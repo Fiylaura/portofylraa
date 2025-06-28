@@ -7,6 +7,7 @@ import NotFound from "@/pages/not-found";
 
 import { LandingPage } from "@/pages/LandingPage";
 import { ProjectsPage } from "@/pages/ProjectsPage";
+import { ExperiencePage } from "@/pages/ExperiencePage";
 
 function Router() {
   return (
@@ -14,6 +15,7 @@ function Router() {
       {/* Add pages below */}
       <Route path="/" component={LandingPage} />
       <Route path="/projects" component={ProjectsPage} />
+      <Route path="/experience" component={ExperiencePage} />
       {/* Fallback to 404 */}
       <Route component={NotFound} />
     </Switch>
