@@ -68,11 +68,14 @@ export const ArticlesPage = (): JSX.Element => {
             </div>
 
             <div className="flex items-center space-x-4">
-              <Button className="h-[50px] w-[150px] bg-[#e56815] rounded-[10px] text-white font-semibold">
+              <Button 
+                className="h-[50px] w-[150px] bg-[#e56815] hover:bg-[#d55a12] rounded-[10px] text-white font-semibold transition-colors"
+                onClick={() => window.location.href = "/#contact"}
+              >
                 My Contact
               </Button>
               <Button 
-                className="h-[50px] w-[115px] bg-[#222a47] rounded-[10px] text-white font-semibold"
+                className="h-[50px] w-[115px] bg-[#222a47] hover:bg-[#1a1f39] rounded-[10px] text-white font-semibold transition-colors"
                 onClick={() => window.location.href = "/admin/login"}
               >
                 Admin Panel

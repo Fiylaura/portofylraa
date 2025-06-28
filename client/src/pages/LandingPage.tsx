@@ -113,10 +113,16 @@ export const LandingPage = (): JSX.Element => {
             </div>
 
             <div className="flex items-center space-x-4">
-              <Button className="h-[50px] w-[150px] bg-[#e56815] rounded-[10px] text-white font-semibold">
+              <Button 
+                className="h-[50px] w-[150px] bg-[#e56815] hover:bg-[#d55a12] rounded-[10px] text-white font-semibold transition-colors"
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              >
                 My Contact
               </Button>
-              <Button className="h-[50px] w-[115px] bg-[#222a47] rounded-[10px] text-white font-semibold">
+              <Button 
+                className="h-[50px] w-[115px] bg-[#222a47] hover:bg-[#1a1f39] rounded-[10px] text-white font-semibold transition-colors"
+                onClick={() => window.location.href = "/admin/login"}
+              >
                 Admin Panel
               </Button>
             </div>
@@ -142,7 +148,10 @@ export const LandingPage = (): JSX.Element => {
                 foundation in UI/UX design and an eye for detail, I turn ideas
                 into intuitive products that truly resonate with real users.
               </p>
-              <Button className="mt-10 h-[50px] w-[150px] bg-[#e56815] rounded-[10px] text-white font-semibold">
+              <Button 
+                className="mt-10 h-[50px] w-[150px] bg-[#e56815] hover:bg-[#d55a12] rounded-[10px] text-white font-semibold transition-colors"
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              >
                 My Contact
               </Button>
             </div>
@@ -384,7 +393,13 @@ export const LandingPage = (): JSX.Element => {
                     </div>
                   </div>
                   <div className="flex justify-end mt-4">
-                    <Button className="w-[102px] h-[39px] bg-[#e56815] rounded-[10px] font-semibold">
+                    <Button 
+                      className="w-[102px] h-[39px] bg-[#e56815] hover:bg-[#d55a12] rounded-[10px] font-semibold text-white transition-colors"
+                      onClick={() => {
+                        // Add form submission logic here
+                        console.log('Form submitted');
+                      }}
+                    >
                       Send
                     </Button>
                   </div>
