@@ -323,16 +323,16 @@ export const LandingPage = (): JSX.Element => {
             {/* Tools */}
             <div className="grid grid-cols-3 md:grid-cols-5 gap-4 md:gap-10 justify-items-center mt-8 md:mt-16">
               {tools.map((tool, index) => (
-                <div key={index} className="w-[70px] h-[70px] md:w-[100px] md:h-[100px]">
+                <div key={index} className="w-[50px] h-[50px] md:w-[70px] md:h-[70px]">
                   {tool.imgSrc ? (
                     <img
-                      className="w-full h-full object-cover rounded-[10px]"
+                      className="w-full h-full object-contain rounded-[10px] p-1"
                       alt={tool.name}
                       src={tool.imgSrc}
                     />
                   ) : (
                     <div
-                      className={`w-full h-full bg-white rounded-[10px] ${tool.bgImage} bg-center bg-contain bg-no-repeat`}
+                      className={`w-full h-full bg-white rounded-[10px] ${tool.bgImage} bg-center bg-contain bg-no-repeat p-1`}
                     />
                   )}
                 </div>
@@ -343,8 +343,8 @@ export const LandingPage = (): JSX.Element => {
 
         {/* Contact Section */}
         <section id="contact" className="py-12 md:py-20 bg-white">
-          <div className="max-w-[1160px] mx-auto px-4 md:px-0 flex flex-col md:flex-row justify-between">
-            <div className="max-w-[645px] mb-8 md:mb-0">
+          <div className="max-w-[1160px] mx-auto px-4 md:px-0 flex flex-col md:flex-row justify-between gap-8">
+            <div className="flex-1 max-w-[500px]">
               <h2 className="font-semibold text-[#222a47] text-2xl md:text-[40px] mb-4">
                 Get In Touch
               </h2>
@@ -420,8 +420,39 @@ export const LandingPage = (): JSX.Element => {
         </section>
 
         {/* Footer */}
-        <footer className="w-full h-[147px] bg-[#e56815]">
-          {/* Footer content can be added here */}
+        <footer className="w-full bg-[#e56815] py-8 md:py-12">
+          <div className="max-w-[1160px] mx-auto px-4 md:px-0">
+            <div className="flex flex-col md:flex-row justify-between items-center">
+              <div className="mb-4 md:mb-0">
+                <h3 className="font-bold text-white text-xl md:text-2xl mb-2">FianaWL</h3>
+                <p className="text-white text-sm md:text-base opacity-90">
+                  Digital Product Designer
+                </p>
+              </div>
+              
+              <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8">
+                <div className="text-center md:text-left">
+                  <p className="text-white text-sm md:text-base font-semibold mb-1">Contact</p>
+                  <p className="text-white text-xs md:text-sm opacity-90">fianawahyulaura@gmail.com</p>
+                </div>
+                
+                <div className="flex space-x-4">
+                  {socialLinks.map((link, index) => (
+                    <div
+                      key={index}
+                      className={`w-[35px] h-[35px] md:w-[40px] md:h-[40px] bg-white rounded-[8px] ${link.bgImage} bg-center bg-contain bg-no-repeat cursor-pointer hover:scale-110 transition-transform`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+            
+            <div className="border-t border-white border-opacity-30 mt-6 pt-4">
+              <p className="text-center text-white text-xs md:text-sm opacity-75">
+                © 2024 FianaWL. All rights reserved.
+              </p>
+            </div>
+          </div>
         </footer>
       </div>
     </div>

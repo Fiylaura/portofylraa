@@ -11,6 +11,7 @@ import { ExperiencePage } from "@/pages/ExperiencePage";
 import { AdminLoginPage } from "@/pages/AdminLoginPage";
 import { ResetPasswordPage } from "@/pages/ResetPasswordPage";
 import { ArticlesPage } from "@/pages/ArticlesPage";
+import { AdminDashboard } from "@/pages/AdminDashboard";
 
 function Router() {
   return (
@@ -21,6 +22,7 @@ function Router() {
       <Route path="/experience" component={ExperiencePage} />
       <Route path="/articles" component={ArticlesPage} />
       <Route path="/admin/login" component={AdminLoginPage} />
+      <Route path="/admin/dashboard" component={AdminDashboard} />
       <Route path="/admin/reset-password" component={ResetPasswordPage} />
       {/* Fallback to 404 */}
       <Route component={NotFound} />

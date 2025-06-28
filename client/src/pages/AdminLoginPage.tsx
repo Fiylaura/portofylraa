@@ -20,8 +20,15 @@ export const AdminLoginPage = (): JSX.Element => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log("Login attempt:", formData);
+    // Simple login validation (in real app, this would be server-side)
+    if (formData.name && formData.phoneNumber && formData.password) {
+      // Store login state (in real app, use proper auth)
+      localStorage.setItem('adminLoggedIn', 'true');
+      // Redirect to dashboard
+      window.location.href = "/admin/dashboard";
+    } else {
+      alert("Please fill in all fields");
+    }
   };
 
   const handleForgotPassword = () => {
