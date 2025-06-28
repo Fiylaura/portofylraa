@@ -12,7 +12,7 @@ export const LandingPage = (): JSX.Element => {
     { name: "About", href: "#about" },
     { name: "Project", href: "#projects" },
     { name: "Experience", href: "#experience" },
-    { name: "Artikel", href: "#articles" },
+    { name: "Articles", href: "/articles" },
   ];
 
   // Technical skills data

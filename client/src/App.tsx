@@ -10,6 +10,7 @@ import { ProjectsPage } from "@/pages/ProjectsPage";
 import { ExperiencePage } from "@/pages/ExperiencePage";
 import { AdminLoginPage } from "@/pages/AdminLoginPage";
 import { ResetPasswordPage } from "@/pages/ResetPasswordPage";
+import { ArticlesPage } from "@/pages/ArticlesPage";
 
 function Router() {
   return (
@@ -18,6 +19,7 @@ function Router() {
       <Route path="/" component={LandingPage} />
       <Route path="/projects" component={ProjectsPage} />
       <Route path="/experience" component={ExperiencePage} />
+      <Route path="/articles" component={ArticlesPage} />
       <Route path="/admin/login" component={AdminLoginPage} />
       <Route path="/admin/reset-password" component={ResetPasswordPage} />
       {/* Fallback to 404 */}
