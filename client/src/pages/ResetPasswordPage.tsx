@@ -3,11 +3,12 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-export const AdminLoginPage = (): JSX.Element => {
+export const ResetPasswordPage = (): JSX.Element => {
   const [formData, setFormData] = useState({
     name: "",
     phoneNumber: "",
-    password: "",
+    newPassword: "",
+    confirmPassword: "",
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,33 +21,45 @@ export const AdminLoginPage = (): JSX.Element => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log("Login attempt:", formData);
-  };
-
-  const handleForgotPassword = () => {
-    // Navigate to reset password page
-    window.location.href = "/admin/reset-password";
+    
+    // Basic validation
+    if (formData.newPassword !== formData.confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+    
+    if (formData.newPassword.length < 6) {
+      alert("Password must be at least 6 characters long!");
+      return;
+    }
+    
+    // Handle reset password logic here
+    console.log("Reset password attempt:", {
+      name: formData.name,
+      phoneNumber: formData.phoneNumber,
+      newPassword: formData.newPassword
+    });
   };
 
   return (
     <div className="bg-[#fbebe3] flex flex-row justify-center w-full">
       <div className="bg-[#fbebe3] w-[1440px] h-[810px] relative">
-        {/* Login Form */}
+        {/* Reset Password Form */}
         <form onSubmit={handleSubmit}>
           {/* Name Input */}
-          <div className="absolute w-[350px] h-[50px] top-[252px] left-[300px]">
+          <div className="absolute w-[350px] h-[50px] top-[231px] left-[300px]">
             <Input
               name="name"
               value={formData.name}
               onChange={handleInputChange}
               className="w-full h-full bg-[#d9d9d9] border-none rounded-none font-normal text-[#000000] text-base px-[42px] placeholder:text-[#00000080]"
               placeholder="Name"
+              required
             />
           </div>
 
           {/* Phone Number Input */}
-          <div className="absolute w-[350px] h-[50px] top-[326px] left-[300px]">
+          <div className="absolute w-[350px] h-[50px] top-[305px] left-[300px]">
             <Input
               name="phoneNumber"
               value={formData.phoneNumber}
@@ -54,37 +67,43 @@ export const AdminLoginPage = (): JSX.Element => {
               className="w-full h-full bg-[#d9d9d9] border-none rounded-none font-normal text-[#000000] text-base px-[42px] placeholder:text-[#00000080]"
               placeholder="Phone Number"
               type="tel"
+              required
             />
           </div>
 
-          {/* Password Input */}
-          <div className="absolute w-[350px] h-[50px] top-[400px] left-[300px]">
+          {/* New Password Input */}
+          <div className="absolute w-[350px] h-[50px] top-[379px] left-[300px]">
             <Input
-              name="password"
-              value={formData.password}
+              name="newPassword"
+              value={formData.newPassword}
               onChange={handleInputChange}
               className="w-full h-full bg-[#d9d9d9] border-none rounded-none font-normal text-[#000000] text-base px-[42px] placeholder:text-[#00000080]"
-              placeholder="Password"
+              placeholder="New Password"
               type="password"
+              required
             />
           </div>
 
-          {/* Forgot Password Link */}
-          <button
-            type="button"
-            onClick={handleForgotPassword}
-            className="absolute top-[455px] left-[300px] font-normal text-[#e56815] text-base tracking-[0] leading-[normal] whitespace-nowrap bg-transparent border-none cursor-pointer"
-          >
-            Lupa Password?
-          </button>
+          {/* Confirm Password Input */}
+          <div className="absolute w-[350px] h-[50px] top-[453px] left-[300px]">
+            <Input
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleInputChange}
+              className="w-full h-full bg-[#d9d9d9] border-none rounded-none font-normal text-[#000000] text-base px-[42px] placeholder:text-[#00000080]"
+              placeholder="Confirm Password"
+              type="password"
+              required
+            />
+          </div>
 
-          {/* Login Button */}
-          <div className="absolute w-[352px] h-[50px] top-[507px] left-[300px]">
+          {/* Reset Button */}
+          <div className="absolute w-[352px] h-[50px] top-[533px] left-[300px]">
             <Button
               type="submit"
               className="relative w-[350px] h-[50px] bg-[#e56815] hover:bg-[#d45a0f] border-none rounded-none font-normal text-white text-base text-center tracking-[0] leading-[normal]"
             >
-              Login
+              Reset
             </Button>
           </div>
         </form>

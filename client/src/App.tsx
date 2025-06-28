@@ -9,6 +9,7 @@ import { LandingPage } from "@/pages/LandingPage";
 import { ProjectsPage } from "@/pages/ProjectsPage";
 import { ExperiencePage } from "@/pages/ExperiencePage";
 import { AdminLoginPage } from "@/pages/AdminLoginPage";
+import { ResetPasswordPage } from "@/pages/ResetPasswordPage";
 
 function Router() {
   return (
@@ -18,6 +19,7 @@ function Router() {
       <Route path="/projects" component={ProjectsPage} />
       <Route path="/experience" component={ExperiencePage} />
       <Route path="/admin/login" component={AdminLoginPage} />
+      <Route path="/admin/reset-password" component={ResetPasswordPage} />
       {/* Fallback to 404 */}
       <Route component={NotFound} />
     </Switch>
