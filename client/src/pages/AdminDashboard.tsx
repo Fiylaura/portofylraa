@@ -36,6 +36,23 @@ interface ThemeSettings {
   backgroundColor: string;
 }
 
+interface ProfileSettings {
+  profileImage: string;
+  name: string;
+  title: string;
+  description: string;
+  email: string;
+  phone: string;
+  location: string;
+  socialLinks: {
+    linkedin: string;
+    github: string;
+    instagram: string;
+  };
+  skills: string[];
+  resume: string;
+}
+
 export const AdminDashboard = (): JSX.Element => {
   // Sample data
   const [articles, setArticles] = useState<Article[]>([
@@ -54,6 +71,23 @@ export const AdminDashboard = (): JSX.Element => {
     primaryColor: "#e56815",
     secondaryColor: "#222a47",
     backgroundColor: "#fbebe3"
+  });
+
+  const [profileSettings, setProfileSettings] = useState<ProfileSettings>({
+    profileImage: "/figmaAssets/whatsapp-image-2025-05-03-at-20-20-29.png",
+    name: "Fiana",
+    title: "Product Digital Designer",
+    description: "I'm a Product Digital Designer passionate about crafting user-friendly and impactful digital experiences. With a strong foundation in UI/UX design and an eye for detail, I turn ideas into intuitive products that truly resonate with real users.",
+    email: "fiana@example.com",
+    phone: "+62 123 456 789",
+    location: "Indonesia",
+    socialLinks: {
+      linkedin: "https://linkedin.com/in/fiana",
+      github: "https://github.com/fiana",
+      instagram: "https://instagram.com/fiana"
+    },
+    skills: ["UI Design", "UX Research", "Product Design", "No Code Tools", "Basic HTML/CSS"],
+    resume: ""
   });
 
   // Form states
@@ -137,13 +171,229 @@ export const AdminDashboard = (): JSX.Element => {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <Tabs defaultValue="articles" className="space-y-4">
-          <TabsList className="grid w-full grid-cols-4">
+        <Tabs defaultValue="profile" className="space-y-4">
+          <TabsList className="grid w-full grid-cols-5">
+            <TabsTrigger value="profile">Profile</TabsTrigger>
             <TabsTrigger value="articles">Articles</TabsTrigger>
             <TabsTrigger value="projects">Projects</TabsTrigger>
             <TabsTrigger value="experience">Experience</TabsTrigger>
-            <TabsTrigger value="theme">Theme Settings</TabsTrigger>
+            <TabsTrigger value="theme">Theme</TabsTrigger>
           </TabsList>
+
+          {/* Profile Management Tab */}
+          <TabsContent value="profile" className="space-y-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Basic Information */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Basic Information</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div>
+                    <Label htmlFor="profile-image">Profile Image URL</Label>
+                    <Input
+                      id="profile-image"
+                      value={profileSettings.profileImage}
+                      onChange={(e) => setProfileSettings({...profileSettings, profileImage: e.target.value})}
+                      placeholder="Image URL"
+                    />
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="name">Full Name</Label>
+                      <Input
+                        id="name"
+                        value={profileSettings.name}
+                        onChange={(e) => setProfileSettings({...profileSettings, name: e.target.value})}
+                        placeholder="Your full name"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="title">Job Title</Label>
+                      <Input
+                        id="title"
+                        value={profileSettings.title}
+                        onChange={(e) => setProfileSettings({...profileSettings, title: e.target.value})}
+                        placeholder="Your job title"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <Label htmlFor="description">About Description</Label>
+                    <Textarea
+                      id="description"
+                      value={profileSettings.description}
+                      onChange={(e) => setProfileSettings({...profileSettings, description: e.target.value})}
+                      placeholder="Brief description about yourself"
+                      rows={4}
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Contact Information */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Contact Information</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div>
+                    <Label htmlFor="email">Email</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      value={profileSettings.email}
+                      onChange={(e) => setProfileSettings({...profileSettings, email: e.target.value})}
+                      placeholder="your@email.com"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="phone">Phone Number</Label>
+                    <Input
+                      id="phone"
+                      value={profileSettings.phone}
+                      onChange={(e) => setProfileSettings({...profileSettings, phone: e.target.value})}
+                      placeholder="+62 123 456 789"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="location">Location</Label>
+                    <Input
+                      id="location"
+                      value={profileSettings.location}
+                      onChange={(e) => setProfileSettings({...profileSettings, location: e.target.value})}
+                      placeholder="City, Country"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="resume">Resume/CV URL</Label>
+                    <Input
+                      id="resume"
+                      value={profileSettings.resume}
+                      onChange={(e) => setProfileSettings({...profileSettings, resume: e.target.value})}
+                      placeholder="Link to your resume"
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Social Links */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Social Media Links</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div>
+                    <Label htmlFor="linkedin">LinkedIn</Label>
+                    <Input
+                      id="linkedin"
+                      value={profileSettings.socialLinks.linkedin}
+                      onChange={(e) => setProfileSettings({
+                        ...profileSettings, 
+                        socialLinks: {...profileSettings.socialLinks, linkedin: e.target.value}
+                      })}
+                      placeholder="https://linkedin.com/in/yourprofile"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="github">GitHub</Label>
+                    <Input
+                      id="github"
+                      value={profileSettings.socialLinks.github}
+                      onChange={(e) => setProfileSettings({
+                        ...profileSettings, 
+                        socialLinks: {...profileSettings.socialLinks, github: e.target.value}
+                      })}
+                      placeholder="https://github.com/yourusername"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="instagram">Instagram</Label>
+                    <Input
+                      id="instagram"
+                      value={profileSettings.socialLinks.instagram}
+                      onChange={(e) => setProfileSettings({
+                        ...profileSettings, 
+                        socialLinks: {...profileSettings.socialLinks, instagram: e.target.value}
+                      })}
+                      placeholder="https://instagram.com/yourusername"
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Skills Management */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Skills Management</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div>
+                    <Label htmlFor="skills">Skills (comma separated)</Label>
+                    <Textarea
+                      id="skills"
+                      value={profileSettings.skills.join(', ')}
+                      onChange={(e) => setProfileSettings({
+                        ...profileSettings, 
+                        skills: e.target.value.split(',').map(skill => skill.trim()).filter(skill => skill)
+                      })}
+                      placeholder="UI Design, UX Research, Product Design"
+                      rows={3}
+                    />
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {profileSettings.skills.map((skill, index) => (
+                      <span key={index} className="bg-[#e56815] text-white px-2 py-1 rounded text-sm">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Profile Preview */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Profile Preview</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-col md:flex-row gap-6 p-4 bg-[#fbebe3] rounded-lg">
+                  <div className="relative w-32 h-32 mx-auto md:mx-0">
+                    <div className="absolute top-0 left-0 bg-[#e56815] rounded-lg w-full h-full" />
+                    <img
+                      className="absolute top-2 left-2 w-28 h-28 object-cover rounded-lg"
+                      alt="Profile preview"
+                      src={profileSettings.profileImage}
+                      onError={(e) => {
+                        e.currentTarget.src = "/figmaAssets/whatsapp-image-2025-05-03-at-20-20-29.png";
+                      }}
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-bold text-[#222a47] text-xl">{profileSettings.name}</h3>
+                    <p className="text-[#e56815] font-semibold">{profileSettings.title}</p>
+                    <p className="text-[#222a47cc] mt-2 text-sm">{profileSettings.description}</p>
+                    <div className="mt-3 space-y-1 text-sm text-[#222a47]">
+                      <p>📧 {profileSettings.email}</p>
+                      <p>📱 {profileSettings.phone}</p>
+                      <p>📍 {profileSettings.location}</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Save Button */}
+            <div className="flex justify-end">
+              <Button 
+                onClick={() => alert('Profile settings saved!')}
+                className="bg-[#e56815] hover:bg-[#d55a12]"
+              >
+                Save Profile Settings
+              </Button>
+            </div>
+          </TabsContent>
 
           {/* Articles Tab */}
           <TabsContent value="articles" className="space-y-4">
